@@ -1,0 +1,58 @@
+! Settings used in the main program.
+Main:numberOfEvents = 1000                     ! number of events to generate
+Beams:eCM = 13000.                              ! CM energy of collision
+
+! Settings related to output in init(), next() and stat().
+Init:showChangedSettings = on                   ! list changed settings
+Init:showChangedParticleData = on              ! list changed particle data
+Next:numberCount = 1000                         ! print message every n events
+Next:numberShowInfo = 0                         ! print event information n times
+Next:numberShowProcess = 0                      ! print process record n times
+Next:numberShowEvent = 2                        ! print event record n times
+
+! For debugging purposes only
+! PartonLevel:ISR = off
+! PartonLevel:FSR = off
+! PartonLevel:MPI = off
+! HadronLevel:all = off
+
+HiddenValley:Ngauge=3
+HiddenValley:nFlav=2
+
+HiddenValley:spinFv=0
+HiddenValley:Lambda=0.35
+
+HiddenValley:ffbar2Zv=on
+HiddenValley:FSR=on
+HiddenValley:fragment=on
+HiddenValley:probVector=0
+HiddenValley:aLund=0.1
+HiddenValley:bmqv2=2.0
+HiddenValley:rFactqv=1.0
+
+4900023:onMode = off
+4900023:m0=91
+4900023:mMin=0
+! 4900023:mMax=50
+4900023:mWidth=1
+
+4900101:m0=0.4
+4900023:addChannel = 1 1 100 4900101 -4900101
+
+4900113:m0=3
+4900213:m0=3
+4900211:m0=2
+4900111:m0=2
+
+4900211:mayDecay=on
+4900111:mayDecay=on
+4900211:addChannel = 1 1 103 13 -13
+4900111:addChannel = 1 1 103 13 -13
+! 4900211:addChannel = 2 0.041 91 21 21
+! 4900111:addChannel = 1 0.041 91 21 21
+
+
+4900211:tau0=10
+4900111:tau0=10
+
+
