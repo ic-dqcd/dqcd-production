@@ -2,4 +2,4 @@
 
 ## Installation
 
-`git clone https://github.com/ic-dqcd/dqcd-production.git Configuration/GenProduction`
+`git clone https://github.com/ic-dqcd/dqcd-production.git -b 2022 Configuration/GenProduction`
