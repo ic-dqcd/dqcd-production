@@ -17,14 +17,22 @@ cmsenv
 ````
 
 Clone the repository with
-`git clone https://github.com/ic-dqcd/dqcd-production.git -b 2022 Configuration/GenProduction`
+```
+git clone https://github.com/ic-dqcd/dqcd-production.git -b 2022 Configuration/GenProduction
+```
 or
-`git clone git@github.com:ic-dqcd/dqcd-production.git -b 2022 Configuration/GenProduction`
+```
+git clone git@github.com:ic-dqcd/dqcd-production.git -b 2022 Configuration/GenProduction
+````
 
 
 Configure with
-`scram b -j8`
+```
+scram b -j8
+```
 
 
 Initialise your GRID certificate
-`voms-proxy-init --rfc --voms cms -valid 192:00`
+```
+voms-proxy-init --rfc --voms cms -valid 192:00
+```
