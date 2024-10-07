@@ -23,3 +23,13 @@ generator = cms.EDFilter("Pythia8GeneratorFilter",
         parameterSets = cms.vstring('processParameters', 'pythia8PSweightsSettings')
     )
 )
+
+MuMuFilter = cms.EDFilter("MCParticlePairFilter",
+    Status = cms.untracked.vint32(1, 1),
+    MinPt = cms.untracked.vdouble(1, 1),
+    MaxEta = cms.untracked.vdouble(2.5, 2.5),
+    MinEta = cms.untracked.vdouble(-2.5, -2.5),
+    ParticleID1 = cms.untracked.vint32(13,-13),
+)
+
+ProductionFilterSequence = cms.Sequence(generator*MuMuFilter)
