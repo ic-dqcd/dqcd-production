@@ -30,9 +30,10 @@ config.Data.outputDatasetTag = '{name}'
 config.Site.storageSite = 'T2_UK_London_IC'
 """
 
-def submit(name, aux_path=".")
+def submit(name, aux_path="."):
     if os.path.exists(f"{aux_path}/{name}/crab_{name}"):
-        continue
+        return
+    os.system(f"mkdir -p {aux_path}")
     print("Launching", name)
     os.system(cmnd.format(name=name, aux_path=aux_path))
     with open(f"{aux_path}/crab_submit_{name}.py", "w+") as f:
