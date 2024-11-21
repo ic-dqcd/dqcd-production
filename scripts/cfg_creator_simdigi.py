@@ -16,7 +16,6 @@ config.JobType.psetName = 'simdigi_cfg.py'
 config.Data.inputDataset = '{dataset}'
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 1
-config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 config.Data.inputDBS = 'phys03'
 
 config.Data.outLFNDirBase = '/store/user/jleonhol/samples/GEN-SIM-DIGI/'
