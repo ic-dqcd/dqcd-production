@@ -32,7 +32,7 @@ def submit(name, dataset, aux_path="."):
     os.system(f"mkdir -p {aux_path}")
     with open(f"{aux_path}/crab_submit_{name}.py", "w+") as f:
         f.write(crab.format(name=name, dataset=dataset, aux_path=aux_path))
-    # os.system(f"crab submit {aux_path}/crab_submit_{name}.py")
+    os.system(f"crab submit {aux_path}/crab_submit_{name}.py")
 
 
 if __name__ == "__main__":
