@@ -1,38 +1,29 @@
 # dqcd-production
 
+## Production
+This repository uses central production to generate the necessary samples. See
+
+https://gitlab.cern.ch/cms-exo-mci/EXO-MCsampleRequests
+https://exo-mc-and-i.gitbook.io/exo-mc-and-interpretation/how-to-sample-request#instructions
+
+For it to work, we need EXO-MCsampleRequests to work with
+- CMSSW_14_0_18
+- --conditions 124X_mcRun3_2022_realistic_v12
+
 ## Installation
-
-Initialise the correct version of CMSSW
-- GEN: CMSSW_13_2_0
-- SIM to AOD: CMSSW_12_4_16
-- miniAOD: CMSSW_12_4_16
-- nanoAOD (see nanotron): CMSSW_13_3_0
-
-e.g. for GEN, do
-
-```
-cmsrel CMSSW_13_2_0
-cd CMSSW_13_2_0/src
-cmsenv
-````
 
 Clone the repository with
 ```
-git clone https://github.com/ic-dqcd/dqcd-production.git -b 2022 Configuration/GenProduction
-```
-or
-```
-git clone git@github.com:ic-dqcd/dqcd-production.git -b 2022 Configuration/GenProduction
+git clone git@github.com:ic-dqcd/dqcd-production.git -b 2024
 ````
 
+Make a fork of EXO-MCsampleRequests and clone it to lxplus
+(follow instructions as in https://exo-mc-and-i.gitbook.io/exo-mc-and-interpretation/how-to-sample-request)
 
-Configure with
+Move the configuration files and request.csv to the corrrect directory in EXO-MCsampleRequests
 ```
-scram b -j8
+cp dqcd-production/python/request.csv EXO-MCsampleRequests/
+cp -r dqcd-production/python/ EXO-MCsampleRequests/genFragments/dqcd
 ```
 
-
-Initialise your GRID certificate
-```
-voms-proxy-init --rfc --voms cms -valid 192:00
-```
+Follow the tests as described in https://exo-mc-and-i.gitbook.io/exo-mc-and-interpretation/how-to-sample-request
