@@ -116,5 +116,7 @@ MuMuFilter = cms.EDFilter("MCParticlePairFilter",
     ParticleID1 = cms.untracked.vint32(13,-13),
 )
 
+generator.PythiaParameters.pythia8CommonSettings.extend(['ParticleDecays:limitTau0 = off'])
+
 ProductionFilterSequence = cms.Sequence(generator*MuMuFilter)
     
