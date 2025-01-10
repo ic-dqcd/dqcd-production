@@ -72,19 +72,23 @@ def convert_file(cfg_filename):
         else:
             updated_py_lines.append(line)
 
-    updated_py_lines.append("""
-MuMuFilter = cms.EDFilter("MCParticlePairFilter",
-    Status = cms.untracked.vint32(1, 1),
-    MinPt = cms.untracked.vdouble(1, 1),
-    MaxEta = cms.untracked.vdouble(2.5, 2.5),
-    MinEta = cms.untracked.vdouble(-2.5, -2.5),
-    ParticleID1 = cms.untracked.vint32(13,-13),
-)
+    updated_py_lines.append("generator.PythiaParameters.pythia8CommonSettings.extend(['ParticleDecays:limitTau0 = off'])")
 
-generator.PythiaParameters.pythia8CommonSettings.extend(['ParticleDecays:limitTau0 = off'])
 
-ProductionFilterSequence = cms.Sequence(generator*MuMuFilter)
-    """)
+
+#    updated_py_lines.append("""
+#MuMuFilter = cms.EDFilter("MCParticlePairFilter",
+#    Status = cms.untracked.vint32(1, 1),
+#    MinPt = cms.untracked.vdouble(1, 1),
+#    MaxEta = cms.untracked.vdouble(2.5, 2.5),
+#    MinEta = cms.untracked.vdouble(-2.5, -2.5),
+#    ParticleID1 = cms.untracked.vint32(13,-13),
+#)
+#
+#generator.PythiaParameters.pythia8CommonSettings.extend(['ParticleDecays:limitTau0 = off'])
+#
+#ProductionFilterSequence = cms.Sequence(generator*MuMuFilter)
+#    """)
 
     # Save the updated file
     with open(output_file_path, "w") as output_file:

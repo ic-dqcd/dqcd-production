@@ -107,16 +107,4 @@ generator = cms.EDFilter("Pythia8ConcurrentGeneratorFilter",
         ),
     )
 )
-
-MuMuFilter = cms.EDFilter("MCParticlePairFilter",
-    Status = cms.untracked.vint32(1, 1),
-    MinPt = cms.untracked.vdouble(1, 1),
-    MaxEta = cms.untracked.vdouble(2.5, 2.5),
-    MinEta = cms.untracked.vdouble(-2.5, -2.5),
-    ParticleID1 = cms.untracked.vint32(13,-13),
-)
-
 generator.PythiaParameters.pythia8CommonSettings.extend(['ParticleDecays:limitTau0 = off'])
-
-ProductionFilterSequence = cms.Sequence(generator*MuMuFilter)
-    
