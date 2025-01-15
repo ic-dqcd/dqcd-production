@@ -24,7 +24,14 @@ def convert_file(cfg_filename):
         slha_content = slha_file.read()
 
     # Convert SLHA content into a cms.vstring-compatible format
-    formatted_slha_content = [f'    "{line.strip()}",\n' for line in slha_content.splitlines()]
+
+    formatted_slha_content = []
+    for line in slha_content.splitlines():
+        line = line.strip()
+        if line and not (line.startswith("!") or line.startswith("#") or line.startswith("Beams") or line.startswith("Init") or line.startswith("Next") or line.startswith("Main")):
+            formatted_slha_content.append(12 * " " + f'"{line.strip()}",\n')
+
+    # formatted_slha_content = [f'    "{line.strip()}",\n' for line in slha_content.splitlines() if '""' not in line and '"!' not in line and '"#' not in line]
 
     # Replace params in the .py file
     updated_py_lines = []
