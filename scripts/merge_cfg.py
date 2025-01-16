@@ -37,12 +37,22 @@ def convert_file(cfg_filename):
         slha_content = slha_file.read()
 
     # Convert SLHA content into a cms.vstring-compatible format
-    formatted_slha_content = [f'    "{line.strip()}",\n' for line in slha_content.splitlines()]
+    #formatted_slha_content = [f'    "{line.strip()}",\n' for line in slha_content.splitlines()]
+    formatted_slha_content = []
+    for line in slha_content.splitlines():
+        line = line.strip()
+        if line and not (line.startswith("!") or line.startswith("#") or line.startswith("Beams") or line.startswith("Init") or line.startswith("Next") or line.startswith("Main")):
+            formatted_slha_content.append(12 * " " + f'"{line.strip()}",\n')
 
     # Replace params in the .py file
     updated_py_lines = []
     skip_block = False
+    stop_writing = False  # Flag to stop writing after encountering MuMuFilter
     for i, line in enumerate(py_lines):
+        # Stop writing after encountering the MuMuFilter i.e. don't write the bottom of the original .py file into the merged one
+        if stop_writing:
+            continue
+
         # Skip the block related to importing and reading the .slha file
         if "import os" in line or 'f = os.environ["CMSSW_BASE"]' in line or 'with open(f) as f:' in line:
             skip_block = True
@@ -79,12 +89,17 @@ def convert_file(cfg_filename):
         if "processParameters = cms.vstring(params)" in line:
             updated_py_lines.append("        processParameters = cms.vstring(\n")
             updated_py_lines.extend(formatted_slha_content)
-            updated_py_lines.append("    \"\",\n")
-            updated_py_lines.append("    \"! Tau limits to override pythia8CommonSettings configuration\",\n")
-            updated_py_lines.append("    \"ParticleDecays:limitTau0 = off\",\n")
+            #updated_py_lines.append("    \"\",\n")
+            #updated_py_lines.append("    \"! Tau limits to override pythia8CommonSettings configuration\",\n")
+            updated_py_lines.append("            \"ParticleDecays:limitTau0 = off           ! Tau limits to override pythia8CommonSettings configuration\",\n")
             updated_py_lines.append("        ),\n")
+        # replace Pythia8GeneratorFilter with Pythia8ConcurrentGeneratorFilter
         elif "Pythia8GeneratorFilter" in line:
             updated_py_lines.append(line.replace("Pythia8GeneratorFilter", "Pythia8ConcurrentGeneratorFilter"))
+        # stop writing after encountering the MuMuFilter (it's assuming there's nothing important afterwards)
+        elif 'MuMuFilter = cms.EDFilter("MCParticlePairFilter",' in line:
+            stop_writing = True
+            continue
         else:
             updated_py_lines.append(line)
 
@@ -97,7 +112,7 @@ def convert_file(cfg_filename):
     # Pass configuration information to the request.csv file
     with open(request_file_path, "a") as request_file:
         #request_file.write("dqcd_"+cfg_filename+"_cfi_2024test_TuneCP5_13p6TeV_powheg-pythia8,genFragments/dqcd/"+cfg_filename+"_cfi.py,1000000,powheg,/cvmfs/cms.cern.ch/phys_generator/gridpacks/RunIII/13p6TeV/slc7_amd64_gcc10/powheg/V2/gg_H_quark-mass-effects_mwindow1d0_slc7_amd64_gcc10_CMSSW_12_4_8.tgz,70.62865,100.00,1.0,1.0\n")
-        request_file.write(new_cfg_filename + "_TuneCP5_13p6TeV_powheg-pythia8,genFragments/Hadronizer/13p6TeV/DQCD_Run3/" + new_cfg_filename + "_cfi.py,500000,powheg,/cvmfs/cms.cern.ch/phys_generator/gridpacks/RunIII/13p6TeV/slc7_amd64_gcc10/powheg/V2/gg_H_quark-mass-effects_mwindow1d0_slc7_amd64_gcc10_CMSSW_12_4_8.tgz,70.62865,100.00,1.0,1.0\n")
+        request_file.write(new_cfg_filename + "_TuneCP5_13p6TeV_powheg-pythia8,genFragments/Hadronizer/13p6TeV/DQCD_Run3/" + new_cfg_filename + "_cfi.py,1000000,powheg,/cvmfs/cms.cern.ch/phys_generator/gridpacks/RunIII/13p6TeV/slc7_amd64_gcc10/powheg/V2/gg_H_quark-mass-effects_mwindow1d0_slc7_amd64_gcc10_CMSSW_12_4_8.tgz,70.62865,100.00,1.0,1.0\n")
 
 
 # Overwrite the request.csv file (if it already exists) with the header of the file
