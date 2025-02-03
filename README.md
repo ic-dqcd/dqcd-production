@@ -4,8 +4,8 @@
 
 Initialise the correct version of CMSSW
 - GEN: CMSSW_13_2_0
-- SIM to AOD: CMSSW_12_4_16
-- miniAOD: CMSSW_12_4_16
+- SIM to AOD: CMSSW_13_0_14
+- miniAOD: CMSSW_13_0_14
 - nanoAOD (see nanotron): CMSSW_13_3_0
 
 e.g. for GEN, do
@@ -18,11 +18,11 @@ cmsenv
 
 Clone the repository with
 ```
-git clone https://github.com/ic-dqcd/dqcd-production.git -b 2022 Configuration/GenProduction
+git clone https://github.com/ic-dqcd/dqcd-production.git -b 2023 Configuration/GenProduction
 ```
 or
 ```
-git clone git@github.com:ic-dqcd/dqcd-production.git -b 2022 Configuration/GenProduction
+git clone git@github.com:ic-dqcd/dqcd-production.git -b 2023 Configuration/GenProduction
 ````
 
 
