@@ -92,6 +92,7 @@ def convert_file(cfg_filename):
             #updated_py_lines.append("    \"\",\n")
             #updated_py_lines.append("    \"! Tau limits to override pythia8CommonSettings configuration\",\n")
             updated_py_lines.append("            \"ParticleDecays:limitTau0 = off           ! Tau limits to override pythia8CommonSettings configuration\",\n")
+            updated_py_lines.append("            \"POWHEG:nFinal = 1           ! needed since it uses ggH gridpacks\",\n")
             updated_py_lines.append("        ),\n")
         # replace Pythia8GeneratorFilter with Pythia8ConcurrentGeneratorFilter
         elif "Pythia8GeneratorFilter" in line:
