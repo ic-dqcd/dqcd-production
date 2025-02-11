@@ -94,9 +94,9 @@ def convert_file(cfg_filename):
             updated_py_lines.append("            \"ParticleDecays:limitTau0 = off           ! Tau limits to override pythia8CommonSettings configuration\",\n")
             updated_py_lines.append("            \"POWHEG:nFinal = 1           ! needed since it uses ggH gridpacks\",\n")
             updated_py_lines.append("        ),\n")
-        # replace Pythia8GeneratorFilter with Pythia8ConcurrentGeneratorFilter
+        # replace Pythia8GeneratorFilter with Pythia8ConcurrentHadronizerFilter
         elif "Pythia8GeneratorFilter" in line:
-            updated_py_lines.append(line.replace("Pythia8GeneratorFilter", "Pythia8ConcurrentGeneratorFilter"))
+            updated_py_lines.append(line.replace("Pythia8GeneratorFilter", "Pythia8ConcurrentHadronizerFilter"))
         # stop writing after encountering the MuMuFilter (it's assuming there's nothing important afterwards)
         elif 'MuMuFilter = cms.EDFilter("MCParticlePairFilter",' in line:
             stop_writing = True
