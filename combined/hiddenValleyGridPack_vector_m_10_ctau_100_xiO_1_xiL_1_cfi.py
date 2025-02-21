@@ -47,7 +47,7 @@ generator = cms.EDFilter("Pythia8ConcurrentGeneratorFilter",
             "HiddenValley:probVector=0.75",
             "4900101:m0 = 4.0                                ! Dark Quark Mass, pythia 8 crashes if this is < 0.4 GeV",
             "4900111:m0 = 10.0                                ! Setting pi'0  Mass",
-            "4900113:m0 = 10                                ! Setting omega'0 Mass",
+            "4900113:m0 = 10.0                                ! Setting omega'0 Mass",
             "4900113:addChannel = 1 0.051 91 1 -1                 ! pi0' -> d dbar",
             "4900113:addChannel = 1 0.203 91 2 -2                 ! pi0' -> u ubar",
             "4900113:addChannel = 1 0.051 91 3 -3                 ! pi0' -> s sbar",
@@ -68,3 +68,11 @@ generator = cms.EDFilter("Pythia8ConcurrentGeneratorFilter",
     )
 )
 generator.PythiaParameters.pythia8CommonSettings.extend(['ParticleDecays:limitTau0 = off'])
+MuMuFilter = cms.EDFilter("MCParticlePairFilter",
+    Status = cms.untracked.vint32(1, 1),
+    MinPt = cms.untracked.vdouble(2, 2),
+    MaxEta = cms.untracked.vdouble(2.5, 2.5),
+    MinEta = cms.untracked.vdouble(-2.5, -2.5),
+    ParticleID1 = cms.untracked.vint32(13,-13),
+)
+ProductionFilterSequence = cms.Sequence(generator*MuMuFilter)
