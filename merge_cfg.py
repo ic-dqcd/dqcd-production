@@ -86,7 +86,7 @@ def convert_file(cfg_filename):
     updated_py_lines.append("""
 MuMuFilter = cms.EDFilter("MCParticlePairFilter",
     Status = cms.untracked.vint32(1, 1),
-    MinPt = cms.untracked.vdouble(2, 2),
+    MinPt = cms.untracked.vdouble(1, 1),
     MaxEta = cms.untracked.vdouble(2.5, 2.5),
     MinEta = cms.untracked.vdouble(-2.5, -2.5),
     ParticleID1 = cms.untracked.vint32(13,-13),
@@ -101,11 +101,11 @@ ProductionFilterSequence = cms.Sequence(generator*MuMuFilter)
 
 
     # Pass configuration information to the request.csv file
-    pattern = r"hiddenValleyGridPack_vector_m_(.*)_ctau_(.*)_xiO_1_xiL_1"
-    match = re.fullmatch(pattern, cfg_filename)
-    dataset_name = f"GluGluHToDarkShowers_VP_mA-{match.group(1)}_ctau-{match.group(2)}_TuneCP5_13TeV_pythia8"
-    with open(request_file_path, "a") as request_file:
-        request_file.write(dataset_name + ",genFragments/dqcd/"+cfg_filename+"_cfi.py,500000,pythia\n")
+    #pattern = r"hiddenValleyGridPack_vector_m_(.*)_ctau_(.*)_xiO_1_xiL_1"
+    #match = re.fullmatch(pattern, cfg_filename)
+    #dataset_name = f"GluGluHToDarkShowers_VP_mA-{match.group(1)}_ctau-{match.group(2)}_TuneCP5_13TeV_pythia8"
+    #with open(request_file_path, "a") as request_file:
+    #    request_file.write(dataset_name + ",genFragments/dqcd/"+cfg_filename+"_cfi.py,500000,pythia\n")
 
 
 
