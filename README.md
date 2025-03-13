@@ -4,8 +4,8 @@
 
 Initialise the correct version of CMSSW
 - GEN: CMSSW_13_2_0
-- GENSIM: 13_0_20
-- DIGI to RAW: 13_0_14
+- GENSIM: CMSSW_13_0_20
+- DIGI to RAW: CMSSW_13_0_14
 - AOD: CMSSW_13_0_14
 following ones tbc
 - miniAOD: CMSSW_13_0_14
