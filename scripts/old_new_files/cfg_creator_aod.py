@@ -8,12 +8,12 @@ from CRABClient.UserUtilities import config
 config = config()
 
 config.General.requestName = '{name}'
-config.General.workArea = '2023_GENSIM-ext/{name}'
+config.General.workArea = '2023_AOD/{name}'
 config.General.transferOutputs = True
 config.General.transferLogs = True
 
 config.JobType.pluginName = 'Analysis'
-config.JobType.psetName = 'gensim_cfg.py'
+config.JobType.psetName = 'aod_cfg.py'
 config.JobType.maxMemoryMB = 2500
 # config.JobType.numCores = 8
 
@@ -24,9 +24,9 @@ NJOBS = 1000
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 config.Data.inputDBS = 'phys03'
 
-config.Data.outLFNDirBase = '/store/user/tafoyava/samples/GENSIM/'
+config.Data.outLFNDirBase = '/store/user/tafoyava/samples/AODSIM/'
 config.Data.publication = True
-config.Data.outputDatasetTag = 'GENSIM_2023-ext'
+config.Data.outputDatasetTag = 'AODSIM_2023'
 
 config.Site.storageSite = 'T2_US_UCSD'
 """
@@ -39,10 +39,10 @@ for name, dataset in datasets.items():
     # name = f.split(".")[0]
     # print(cmnd.format(name=name))
     # print(name)
-    if os.path.exists(f"2023_GENSIM-ext/{name}/crab_{name}"):
+    if os.path.exists(f"2023_AOD/{name}/crab_{name}"):
         continue
     #os.system(cmnd.format(name=name))
-    with open("2023_GENSIM-ext/crab_submit_%s.py" % name, "w+") as f:
+    with open("2023_AOD/crab_submit_%s.py" % name, "w+") as f:
         f.write(crab.format(name=name, dataset=dataset))
-    os.system("crab submit 2023_GENSIM-ext/crab_submit_%s.py &" % name)
+    os.system("crab submit 2023_AOD/crab_submit_%s.py &" % name)
 

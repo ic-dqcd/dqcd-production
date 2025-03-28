@@ -13,9 +13,9 @@ config.General.transferOutputs = True
 config.General.transferLogs = True
 
 config.JobType.pluginName = 'Analysis'
-config.JobType.psetName = 'produceNANO.py'
-# config.JobType.maxMemoryMB = '2500'
-config.JobType.pyCfgParams = ['year=2023', 'isData=False']
+config.JobType.psetName = 'miniaod_postBPix_cfg.py'
+config.JobType.maxMemoryMB = 2500
+# config.JobType.numCores = 8
 
 config.Data.inputDataset = '{dataset}'
 config.Data.splitting = 'FileBased'
@@ -24,21 +24,24 @@ NJOBS = 1000
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 config.Data.inputDBS = 'phys03'
 
-config.Data.outLFNDirBase = '/store/user/tafoyava/samples/nanotron/'
+config.Data.outLFNDirBase = '/store/user/tafoyava/samples/MINIAODSIM/'
 config.Data.publication = True
-config.Data.outputDatasetTag = 'nanotron_2023'
+config.Data.outputDatasetTag = 'MINIAODSIM_2023'
 
 config.Site.storageSite = 'T2_US_UCSD'
 """
 
 datasets = {
-    # "scenarioA_mpi_4_mA_1p33_ctau_10": "/scenarioA_mpi_4_mA_1p33_ctau_10/tafoyava-MINIAODSIM_2022-0bd1d498d73b5aba673807038d08dab2/USER",
-    # "scenarioA_mpi_4_mA_1p33_ctau_100": "/scenarioA_mpi_4_mA_1p33_ctau_100/tafoyava-MINIAODSIM_2022-0bd1d498d73b5aba673807038d08dab2/USER",
-    # "scenarioA_mpi_4_mA_1p33_ctau_0p1": "/scenarioA_mpi_4_mA_1p33_ctau_0p1/tafoyava-MINIAODSIM_2022-0bd1d498d73b5aba673807038d08dab2/USER",
-    # "scenarioA_mpi_4_mA_1p33_ctau_1p0": "/scenarioA_mpi_4_mA_1p33_ctau_1p0/tafoyava-MINIAODSIM_2022-0bd1d498d73b5aba673807038d08dab2/USER",
+    # "scenarioA_mpi_4_mA_1p33_ctau_10": "/scenarioA_mpi_4_mA_1p33_ctau_10/tafoyava-AODSIM_2022-6c55dbd4f99ed6c824b000a7a99348b1/USER",
+    # "scenarioA_mpi_4_mA_1p33_ctau_100": "/scenarioA_mpi_4_mA_1p33_ctau_100/tafoyava-AODSIM_2022-6c55dbd4f99ed6c824b000a7a99348b1/USER",
+    # "scenarioA_mpi_4_mA_1p33_ctau_0p1": "/scenarioA_mpi_4_mA_1p33_ctau_0p1/tafoyava-AODSIM_2022-6c55dbd4f99ed6c824b000a7a99348b1/USER",
+    # "scenarioA_mpi_4_mA_1p33_ctau_1p0": "/scenarioA_mpi_4_mA_1p33_ctau_1p0/tafoyava-AODSIM_2022-6c55dbd4f99ed6c824b000a7a99348b1/USER",
 }
 
 for name, dataset in datasets.items():
+    # name = f.split(".")[0]
+    # print(cmnd.format(name=name))
+    # print(name)
     if os.path.exists(f"2023/{name}/crab_{name}"):
         continue
     #os.system(cmnd.format(name=name))
