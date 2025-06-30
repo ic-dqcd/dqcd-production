@@ -25,6 +25,10 @@ def convert_file(cfg_filename):
 
     # Convert SLHA content into a cms.vstring-compatible format
 
+    if "scenarioA" in cfg_filename:
+        slha_content = slha_content.replace("999999","9900015")
+
+
     formatted_slha_content = []
     for line in slha_content.splitlines():
         line = line.strip()
