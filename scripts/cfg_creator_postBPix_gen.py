@@ -30,6 +30,11 @@ config.Data.publication = True
 config.Data.outputDatasetTag = '{name}_2023_postBPix-ext'
 
 config.Site.storageSite = 'T2_US_UCSD'
+
+config.Site.blacklist = ['T2_US_MIT']
+config.Site.whitelist = ['T2_US_UCSD','T2_US_Wisconsin','T2_US_Florida']
+config.section_("Debug")
+config.Debug.extraJDL = ['My.CMS_ALLOW_OVERFLOW=False']
 """
 
 
@@ -174,34 +179,34 @@ files = [
    "scenarioB1_mpi_5_mA_2p40_ctau_100.slha",
    "scenarioB1_mpi_5_mA_2p40_ctau_10.slha",
    "scenarioB1_mpi_5_mA_2p40_ctau_1p0.slha",
-   "scenarioB2_mpi_1_mA_0p60_ctau_0p1.slha",
-   "scenarioB2_mpi_1_mA_0p60_ctau_100.slha",
-   "scenarioB2_mpi_1_mA_0p60_ctau_10.slha",
-   "scenarioB2_mpi_1_mA_0p60_ctau_1p0.slha",
-   "scenarioB2_mpi_2_mA_1p10_ctau_0p1.slha",
-   "scenarioB2_mpi_2_mA_1p10_ctau_100.slha",
-   "scenarioB2_mpi_2_mA_1p10_ctau_10.slha",
-   "scenarioB2_mpi_2_mA_1p10_ctau_1p0.slha",
-   "scenarioB2_mpi_4_mA_2p10_ctau_0p1.slha",
-   "scenarioB2_mpi_4_mA_2p10_ctau_100.slha",
-   "scenarioB2_mpi_4_mA_2p10_ctau_10.slha",
-   "scenarioB2_mpi_4_mA_2p10_ctau_1p0.slha",
-   "scenarioB2_mpi_5_mA_2p60_ctau_0p1.slha",
-   "scenarioB2_mpi_5_mA_2p60_ctau_100.slha",
-   "scenarioB2_mpi_5_mA_2p60_ctau_10.slha",
-   "scenarioB2_mpi_5_mA_2p60_ctau_1p0.slha",
-   "scenarioC_mpi_10_mA_8p00_ctau_0p1.slha",
-   "scenarioC_mpi_10_mA_8p00_ctau_100.slha",
-   "scenarioC_mpi_10_mA_8p00_ctau_10.slha",
-   "scenarioC_mpi_10_mA_8p00_ctau_1p0.slha",
-   "scenarioC_mpi_2_mA_1p60_ctau_0p1.slha",
-   "scenarioC_mpi_2_mA_1p60_ctau_100.slha",
-   "scenarioC_mpi_2_mA_1p60_ctau_10.slha",
-   "scenarioC_mpi_2_mA_1p60_ctau_1p0.slha",
-   "scenarioC_mpi_4_mA_3p20_ctau_0p1.slha",
-   "scenarioC_mpi_4_mA_3p20_ctau_100.slha",
-   "scenarioC_mpi_4_mA_3p20_ctau_10.slha",
-   "scenarioC_mpi_4_mA_3p20_ctau_1p0.slha",
+   #"scenarioB2_mpi_1_mA_0p60_ctau_0p1.slha",
+   #"scenarioB2_mpi_1_mA_0p60_ctau_100.slha",
+   #"scenarioB2_mpi_1_mA_0p60_ctau_10.slha",
+   #"scenarioB2_mpi_1_mA_0p60_ctau_1p0.slha",
+   #"scenarioB2_mpi_2_mA_1p10_ctau_0p1.slha",
+   #"scenarioB2_mpi_2_mA_1p10_ctau_100.slha",
+   #"scenarioB2_mpi_2_mA_1p10_ctau_10.slha",
+   #"scenarioB2_mpi_2_mA_1p10_ctau_1p0.slha",
+   #"scenarioB2_mpi_4_mA_2p10_ctau_0p1.slha",
+   #"scenarioB2_mpi_4_mA_2p10_ctau_100.slha",
+   #"scenarioB2_mpi_4_mA_2p10_ctau_10.slha",
+   #"scenarioB2_mpi_4_mA_2p10_ctau_1p0.slha",
+   #"scenarioB2_mpi_5_mA_2p60_ctau_0p1.slha",
+   #"scenarioB2_mpi_5_mA_2p60_ctau_100.slha",
+   #"scenarioB2_mpi_5_mA_2p60_ctau_10.slha",
+   #"scenarioB2_mpi_5_mA_2p60_ctau_1p0.slha",
+   #"scenarioC_mpi_10_mA_8p00_ctau_0p1.slha",
+   #"scenarioC_mpi_10_mA_8p00_ctau_100.slha",
+   #"scenarioC_mpi_10_mA_8p00_ctau_10.slha",
+   #"scenarioC_mpi_10_mA_8p00_ctau_1p0.slha",
+   #"scenarioC_mpi_2_mA_1p60_ctau_0p1.slha",
+   #"scenarioC_mpi_2_mA_1p60_ctau_100.slha",
+   #"scenarioC_mpi_2_mA_1p60_ctau_10.slha",
+   #"scenarioC_mpi_2_mA_1p60_ctau_1p0.slha",
+   #"scenarioC_mpi_4_mA_3p20_ctau_0p1.slha",
+   #"scenarioC_mpi_4_mA_3p20_ctau_100.slha",
+   #"scenarioC_mpi_4_mA_3p20_ctau_10.slha",
+   #"scenarioC_mpi_4_mA_3p20_ctau_1p0.slha",
 ]
 
 
@@ -216,5 +221,5 @@ for f in files:
     os.system(cmnd.format(name=name))
     with open("2023_GEN_postBPix-ext/crab_submit_%s.py" % name, "w+") as f:
         f.write(crab.format(name=name))
-    os.system("crab submit 2023_GEN_postBPix-ext/crab_submit_%s.py &" % name)
+    os.system("crab submit 2023_GEN_postBPix-ext/crab_submit_%s.py" % name)
 

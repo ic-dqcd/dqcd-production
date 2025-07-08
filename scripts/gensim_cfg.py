@@ -118,6 +118,7 @@ process = addMonitoring(process)
 
 # Customisation from command line
 process.source.bypassVersionCheck=cms.untracked.bool(True)
+#process.source.eventsToSkip = cms.untracked.VEventRange("1:9692:969194")
 
 # Add early deletion of temporary data products to reduce peak memory need
 from Configuration.StandardSequences.earlyDeleteSettings_cff import customiseEarlyDelete

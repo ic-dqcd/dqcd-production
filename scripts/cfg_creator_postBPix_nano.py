@@ -29,6 +29,8 @@ config.Data.publication = True
 config.Data.outputDatasetTag = 'nanotron_2023'
 
 config.Site.storageSite = 'T2_US_UCSD'
+
+config.Site.blacklist = ['T2_US_MIT']
 """
 
 datasets = {
