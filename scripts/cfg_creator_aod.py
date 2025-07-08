@@ -177,9 +177,6 @@ datasets = {
 }
 
 for name, dataset in datasets.items():
-    # name = f.split(".")[0]
-    # print(cmnd.format(name=name))
-    # print(name)
     if os.path.exists(f"2023_AOD-ext/{name}/crab_{name}"):
         continue
     #os.system(cmnd.format(name=name))

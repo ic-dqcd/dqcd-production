@@ -49,3 +49,9 @@ git clone git@github.com:ic-dqcd/dqcd-production.git -b 2023 Configuration/GenPr
 scram b -j8
 voms-proxy-init --rfc --voms cms -valid 192:00
 ```
+
+
+##
+For additional tools for submision and management, see
+[https://github.com/jtafoya/dqcd-production-tools](https://github.com/jtafoya/dqcd-production-tools)
+
