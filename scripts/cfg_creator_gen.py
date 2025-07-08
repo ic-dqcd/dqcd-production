@@ -32,6 +32,9 @@ config.Data.outputDatasetTag = '{name}_2023-ext'
 config.Site.storageSite = 'T2_US_UCSD'
 
 config.Site.blacklist = ['T2_US_MIT']
+config.Site.whitelist = ['T2_US_UCSD','T2_US_Wisconsin','T2_US_Florida']
+config.section_("Debug")
+config.Debug.extraJDL = ['My.CMS_ALLOW_OVERFLOW=False']
 """
 
 
