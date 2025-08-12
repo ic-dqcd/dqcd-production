@@ -51,10 +51,10 @@ See [https://github.com/prijb/nanotron/tree/Parking](https://github.com/prijb/na
 
 To run a production, be sure to load the following additional configuration, needed to rectify the proxy manager paths:
 ```
-#Script for sourcing CMS related stuff
+# Script for sourcing CMS related stuff
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 export CMSSW_GIT_REFERENCE=/cvmfs/cms.cern.ch/cmssw.git.daily
-#New version
+# New version
 source /cvmfs/grid.cern.ch/alma9-ui-current/etc/profile.d/setup-alma9-test.sh
 voms-proxy-init --rfc -voms cms --valid 192:00
 ```
