@@ -1,0 +1,48 @@
+import os
+
+crab = """
+from CRABClient.UserUtilities import config
+config = config()
+
+config.General.requestName = '{name}'
+config.General.workArea = '2024_NANOAOD-ext_TEST_2/{name}'
+config.General.transferOutputs = True
+config.General.transferLogs = True
+
+config.JobType.pluginName = 'Analysis'
+config.JobType.psetName = 'produceNANO.py'
+# config.JobType.maxMemoryMB = '2500'
+config.JobType.pyCfgParams = ['year=2024', 'isData=False']
+
+config.Data.inputDataset = '{dataset}'
+config.Data.splitting = 'FileBased'
+config.Data.unitsPerJob = 1
+NJOBS = 1
+config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
+config.Data.inputDBS = 'global'
+config.Data.publishDBS = 'phys03'
+
+config.Data.outLFNDirBase = '/store/user/tafoyava/samples/nanotron/'
+config.Data.publication = True
+config.Data.outputDatasetTag = 'nanotron_2024-TEST_2'
+
+config.Site.storageSite = 'T2_US_UCSD'
+
+config.Site.blacklist = ['T2_US_MIT']
+config.Site.whitelist = ['T2_US_UCSD','T2_US_Wisconsin','T2_US_Florida', 'T2_BE_IIHE', 'T2_IT_Rome', 'T2_US_Nebraska', 'T1_UK_RAL',]
+config.section_("Debug")
+config.Debug.extraJDL = ['My.CMS_ALLOW_OVERFLOW=False']
+"""
+
+datasets = {
+     #"scenarioA_mpi_4_mA_1p33_ctau_10": "/scenarioA_mpi_4_mA_1p33_ctau_10/tafoyava-MINIAODSIM_2022-REPLACETHISSIGNATURE/USER",
+     "GluGluHToDarkShowers-ScenarioA_Par-ctau-0p1-mA-0p25-mpi-1_TuneCP5_13p6TeV_powheg-pythia8": "/GluGluHToDarkShowers-ScenarioA_Par-ctau-0p1-mA-0p25-mpi-1_TuneCP5_13p6TeV_powheg-pythia8/RunIII2024Summer24MiniAODv6-150X_mcRun3_2024_realistic_v2-v2/MINIAODSIM",
+}
+
+for name, dataset in datasets.items():
+    if os.path.exists(f"2024_NANOAOD-ext_TEST_2/{name}/crab_{name}"):
+        continue
+    #os.system(cmnd.format(name=name))
+    with open("2024_NANOAOD-ext_TEST_2/crab_submit_%s.py" % name, "w+") as f:
+        f.write(crab.format(name=name, dataset=dataset))
+    os.system("CRAB_USE_MYPROXY=0 crab submit 2024_NANOAOD-ext_TEST_2/crab_submit_%s.py" % name)
