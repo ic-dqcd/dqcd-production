@@ -29,9 +29,10 @@ config.Data.outputDatasetTag = 'RunIII2024Summer24_nanotron_v15-150X_mcRun3_2024
 config.Site.storageSite = 'T2_US_UCSD'
 
 config.Site.blacklist = ['T2_US_MIT']
-config.Site.whitelist = ['T2_US_UCSD','T2_US_Wisconsin','T2_US_Florida', 'T2_BE_IIHE', 'T2_IT_Rome', 'T2_US_Nebraska', 'T1_UK_RAL',]
-config.section_("Debug")
-config.Debug.extraJDL = ['My.CMS_ALLOW_OVERFLOW=False']
+# N.B. whitelisting and CMS_ALLOW_OVERFLOW=False also limit to which servers we have access to. If a server storing one of the samples is not explicitly mentioned, the processing will ignore it and run only over those explicitly accessible
+#config.Site.whitelist = ['T2_US_UCSD','T2_US_Wisconsin','T2_US_Florida', 'T2_BE_IIHE', 'T2_IT_Rome', 'T2_US_Nebraska', 'T1_UK_RAL',]
+#config.section_("Debug")
+#config.Debug.extraJDL = ['My.CMS_ALLOW_OVERFLOW=False']
 """
 
 datasets = {
