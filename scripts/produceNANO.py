@@ -471,19 +471,19 @@ elif "2024" in options.year:
     Path = [
         "HLT_DoubleMu4_3_LowMass",
         "HLT_DoubleMu4_LowMass_Displaced",
-        "HLT_Mu10_Barrel_L1HP11_IP6_V",
+        "HLT_Mu10_Barrel_L1HP11_IP6_v",
         "HLT_Mu9_Barrel_L1HP10_IP6_v",
         "HLT_Mu8_Barrel_L1HP9_IP6_v",
         "HLT_Mu7_Barrel_L1HP8_IP6_v",
-        "HLT_Mu6_Barrel_L1HP7_IP6_V",
-        "HLT_MuO_Barrel_L1HP6_IP6_v",
-        "HLT_MuO_Barrel_L1HP11_v",
-        "HLT_MuO_BarreLv",
-        "HLT_MuO_Barrel_L1HP10_v",
-        "HLT_Muo_Barrel_L1HP9_v",
-        "HLT_MuO_Barrel_L1HP8_v",
-        "HLT_MuO_Barrel_L1HP7_v",
-        "HLT_MuO_Barrel_L1HP6_v"
+        "HLT_Mu6_Barrel_L1HP7_IP6_v",
+        "HLT_Mu0_Barrel_L1HP6_IP6_v",
+        "HLT_Mu0_Barrel_L1HP11_v",
+        "HLT_Mu0_Barrel_v",
+        "HLT_Mu0_Barrel_L1HP10_v",
+        "HLT_Mu0_Barrel_L1HP9_v",
+        "HLT_Mu0_Barrel_L1HP8_v",
+        "HLT_Mu0_Barrel_L1HP7_v",
+        "HLT_Mu0_Barrel_L1HP6_v"
     ]
 
 process.muonTrgSelector = cms.EDProducer("MuonTriggerSelector",
