@@ -14,7 +14,7 @@ config = config()
 config.General.requestName = '{name}'
 config.General.workArea = '2023_GEN_postBPix-ext/{name}'
 config.General.transferOutputs = True
-config.General.transferLogs = True
+config.General.transferLogs = False
 
 config.JobType.pluginName = 'PrivateMC'
 config.JobType.psetName = '2023_GEN_postBPix-ext/gen_{name}_cfg.py'

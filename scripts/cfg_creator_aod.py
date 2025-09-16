@@ -7,7 +7,7 @@ config = config()
 config.General.requestName = '{name}'
 config.General.workArea = '2023_AOD-ext/{name}'
 config.General.transferOutputs = True
-config.General.transferLogs = True
+config.General.transferLogs = False
 
 config.JobType.pluginName = 'Analysis'
 config.JobType.psetName = 'aod_cfg.py'

@@ -7,7 +7,7 @@ config = config()
 config.General.requestName = '{name}'
 config.General.workArea = '2023_DIGIRAW_postBPix-ext/{name}'
 config.General.transferOutputs = True
-config.General.transferLogs = True
+config.General.transferLogs = False
 
 config.JobType.pluginName = 'Analysis'
 config.JobType.psetName = 'gen_sim_raw_postBPix_cfg.py'
